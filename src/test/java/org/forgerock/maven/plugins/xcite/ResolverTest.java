@@ -123,4 +123,15 @@ public class ResolverTest {
 
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    public void getQuoteNonexistentFile() throws IOException {
+        Resolver resolver = new Resolver(new File("."), false, 0, true);
+
+        File file = new File(".");
+        Citation citation = Citation.valueOf("[does-not-exist.txt]");
+        String result = resolver.getQuote(file, citation);
+
+        assertThat(result).isEqualTo("[does-not-exist.txt]");
+    }
 }

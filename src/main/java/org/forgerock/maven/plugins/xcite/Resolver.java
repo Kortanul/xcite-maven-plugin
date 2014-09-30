@@ -202,6 +202,11 @@ public class Resolver {
             citedFile = new File(currentDirectory, citedFile.getPath());
         }
 
+        // Either this is not a citation, or it is a broken citation.
+        if (!citedFile.exists()) {
+            return citation.toString();
+        }
+
         // Extract the raw quote from the cited file.
         ArrayList<String> quoteLines = StringUtils.extractQuote(
                 FileUtils.getStrings(citedFile), citation.getStart(), citation.getEnd());
