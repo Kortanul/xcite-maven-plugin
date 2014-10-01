@@ -49,6 +49,9 @@
               <includes>
                 <include>**/source.txt</include>
               </includes>
+              <excludes>
+                <exclude>**/exclude/*.*</exclude>
+              </excludes>
               <escapeXml>true</escapeXml>
               <outdent>true</outdent>
               <indent>4</indent>

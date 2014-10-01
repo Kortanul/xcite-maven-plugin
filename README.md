@@ -149,6 +149,8 @@ XCite has the following optional configuration:
 
 * `<escapeXml>true</escapeXml>`: escape XML characters in quotes.<br>
   Default: false.
+* `<excludes><exclude>**/exclude/*.*</exclude></excludes>`: ignore `exclude/` dirs.<br>
+  Default: ignore image files and default excludes, such as SCM files.
 * `<includes><include>**/*.xml</include></includes>`: process only XML.<br>
   Default: replace citations with quotes in all source files.
 * `<indent>int</indent>`: indent quotes `int` spaces from the left margin.<br>

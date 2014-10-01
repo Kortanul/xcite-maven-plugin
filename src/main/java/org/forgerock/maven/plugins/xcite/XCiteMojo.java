@@ -44,6 +44,12 @@ public class XCiteMojo extends AbstractMojo {
     private String[] includes;
 
     /**
+     * Filter strings specifying files to exclude.
+     */
+    @Parameter
+    private String[] excludes;
+
+    /**
      * Indent quotes this number of spaces from the left margin.
      */
     @Parameter ( defaultValue = "0" )
@@ -85,7 +91,7 @@ public class XCiteMojo extends AbstractMojo {
             }
         }
 
-        String[] files = FileUtils.getIncludedFiles(sourceDirectory, includes);
+        String[] files = FileUtils.getIncludedFiles(sourceDirectory, includes, excludes);
         Resolver resolver =
                 new Resolver(outputDirectory, escapeXml, indent, outdent);
         try {

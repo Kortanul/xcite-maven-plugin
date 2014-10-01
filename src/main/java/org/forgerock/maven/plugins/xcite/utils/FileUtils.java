@@ -73,19 +73,34 @@ public final class FileUtils {
      * @param includes          Patterns specifying files to include.
      *                          If null, match all files
      *                          except files excluded by default.
+     * @param excludes          Patterns specifying files to exclude.
+     *                          If null, exclude only image files
+     *                          and files excluded by default.
      * @return                  Relative paths to files.
      */
-    public static String[] getIncludedFiles(File baseDirectory, String[] includes) {
+    public static String[] getIncludedFiles(File baseDirectory,
+                                            String[] includes,
+                                            String[] excludes) {
         DirectoryScanner scanner = new DirectoryScanner();
         scanner.setBasedir(baseDirectory);
         scanner.setIncludes(includes);
 
-        // Exclude both image files and the defaults.
-        String[] excludes = new String[IMAGE_FILES.length
+        // Exclude at least image files and the defaults.
+        String[] defaultExcludes = new String[IMAGE_FILES.length
                 + DirectoryScanner.DEFAULTEXCLUDES.length];
-        System.arraycopy(IMAGE_FILES, 0, excludes, 0, IMAGE_FILES.length);
+        System.arraycopy(IMAGE_FILES, 0, defaultExcludes, 0, IMAGE_FILES.length);
         System.arraycopy(DirectoryScanner.DEFAULTEXCLUDES, 0,
-                excludes, IMAGE_FILES.length, DirectoryScanner.DEFAULTEXCLUDES.length);
+                defaultExcludes, IMAGE_FILES.length, DirectoryScanner.DEFAULTEXCLUDES.length);
+
+        if (excludes == null) {
+            excludes = defaultExcludes;
+        } else {
+            String[] full = new String[excludes.length + defaultExcludes.length];
+            System.arraycopy(excludes, 0, full, 0, excludes.length);
+            System.arraycopy(defaultExcludes, 0, full, excludes.length, defaultExcludes.length);
+            excludes = full;
+        }
+
         scanner.setExcludes(excludes);
 
         scanner.scan();

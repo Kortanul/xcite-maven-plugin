@@ -50,7 +50,7 @@ public class FileUtilsTest {
         String[] includes = new String[1];
         includes[0] = "**/*.txt";
 
-        String[] files = FileUtils.getIncludedFiles(baseDirectory, includes);
+        String[] files = FileUtils.getIncludedFiles(baseDirectory, includes, null);
 
         assertThat(files).contains(temporaryTxtFile.getName());
         assertThat(files).doesNotContain(temporaryTmpFile.getName());
@@ -66,7 +66,7 @@ public class FileUtilsTest {
 
         File baseDirectory = temporaryTmpFile.getParentFile();
 
-        String[] files = FileUtils.getIncludedFiles(baseDirectory, null);
+        String[] files = FileUtils.getIncludedFiles(baseDirectory, null, null);
 
         assertThat(files).contains(temporaryTxtFile.getName());
         assertThat(files).contains(temporaryTmpFile.getName());
@@ -74,4 +74,24 @@ public class FileUtilsTest {
         temporaryTmpFile.deleteOnExit();
         temporaryTmpFile.deleteOnExit();
     }
+
+    @Test
+    public void checkExcludedFiles() throws IOException {
+        File temporaryTxtFile = File.createTempFile("test", ".txt");
+        File temporaryTmpFile = File.createTempFile("test", ".tmp");
+
+        File baseDirectory = temporaryTmpFile.getParentFile();
+
+        String[] excludes = new String[1];
+        excludes[0] = "**/*.tmp";
+
+        String[] files = FileUtils.getIncludedFiles(baseDirectory, null, excludes);
+
+        assertThat(files).contains(temporaryTxtFile.getName());
+        assertThat(files).doesNotContain(temporaryTmpFile.getName());
+
+        temporaryTmpFile.deleteOnExit();
+        temporaryTmpFile.deleteOnExit();
+    }
+
 }
