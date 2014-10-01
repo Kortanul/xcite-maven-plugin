@@ -40,6 +40,32 @@ public class ResolverTest {
         org.apache.commons.io.FileUtils.copyFile(resolved, expected);
 
         assertThat(resolved).hasContentEqualTo(expected);
+
+        expected.deleteOnExit();
+        new File(System.getProperty("java.io.tmpdir"), "cite.txt").deleteOnExit();
+    }
+
+    @Test
+    public void resolveCitationRelativePath() throws IOException {
+        File outputDir = new File(System.getProperty("java.io.tmpdir"));
+        Resolver resolver = new Resolver(outputDir, false, 0, true);
+
+        File resourcesDir = new File(outputDir, "resources");
+        resourcesDir.mkdirs();
+
+        File relative = new File(getClass().getResource("/relative.txt").getFile());
+        org.apache.commons.io.FileUtils.copyFileToDirectory(relative, resourcesDir);
+        File resolved = new File(getClass().getResource("/resolved.txt").getFile());
+        org.apache.commons.io.FileUtils.copyFileToDirectory(resolved, resourcesDir);
+
+        String s = File.separator;
+        String[] files = { "resources" + s + "relative.txt" };
+        resolver.resolve(outputDir, files);
+
+        assertThat(new File(outputDir, "resources" + s + "relative.txt"))
+                .hasContentEqualTo(new File(outputDir, "resources" + s + "resolved.txt"));
+
+        org.apache.commons.io.FileUtils.deleteDirectory(resourcesDir);
     }
 
     @Test
@@ -56,6 +82,9 @@ public class ResolverTest {
         org.apache.commons.io.FileUtils.copyFile(resolved, expected);
 
         assertThat(resolved).hasContentEqualTo(expected);
+
+        expected.deleteOnExit();
+        new File(System.getProperty("java.io.tmpdir"), "cite.txt").deleteOnExit();
     }
 
     @Test
