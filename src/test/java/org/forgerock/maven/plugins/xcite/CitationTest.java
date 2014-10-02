@@ -16,7 +16,6 @@ package org.forgerock.maven.plugins.xcite;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.forgerock.maven.plugins.xcite.Citation;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("javadoc")

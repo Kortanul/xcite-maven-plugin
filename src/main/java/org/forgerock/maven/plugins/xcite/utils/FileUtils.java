@@ -57,14 +57,14 @@ public final class FileUtils {
      * href="http://www.docbook.org/tdg/en/html/imagedata.html">ImageData</a>
      * element.
      */
-    private static String[] IMAGE_FILES = {"**/*.bmp",
-            "**/*.eps",
-            "**/*.gif",
-            "**/*.jpeg",
-            "**/*.jpg",
-            "**/*.png",
-            "**/*.svg",
-            "**/*.tiff"};
+    private static String[] imageFiles = {"**/*.bmp",
+        "**/*.eps",
+        "**/*.gif",
+        "**/*.jpeg",
+        "**/*.jpg",
+        "**/*.png",
+        "**/*.svg",
+        "**/*.tiff"};
 
     /**
      * Get a list of relative file paths based on inclusion patterns.
@@ -86,11 +86,11 @@ public final class FileUtils {
         scanner.setIncludes(includes);
 
         // Exclude at least image files and the defaults.
-        String[] defaultExcludes = new String[IMAGE_FILES.length
+        String[] defaultExcludes = new String[imageFiles.length
                 + DirectoryScanner.DEFAULTEXCLUDES.length];
-        System.arraycopy(IMAGE_FILES, 0, defaultExcludes, 0, IMAGE_FILES.length);
+        System.arraycopy(imageFiles, 0, defaultExcludes, 0, imageFiles.length);
         System.arraycopy(DirectoryScanner.DEFAULTEXCLUDES, 0,
-                defaultExcludes, IMAGE_FILES.length, DirectoryScanner.DEFAULTEXCLUDES.length);
+                defaultExcludes, imageFiles.length, DirectoryScanner.DEFAULTEXCLUDES.length);
 
         if (excludes == null) {
             excludes = defaultExcludes;
@@ -105,5 +105,12 @@ public final class FileUtils {
 
         scanner.scan();
         return scanner.getIncludedFiles();
+    }
+
+    /**
+     * Constructor not used.
+     */
+    private FileUtils() {
+        // Not used
     }
 }

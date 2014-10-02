@@ -62,6 +62,7 @@ public class StringUtilsTest {
         textExtract.add("");
         textExtract.add("# Tabs and spaces");
         textExtract.add("");
+        /* @Checkstyle:ignoreFor 1 */
         textExtract.add("	This line starts with a tab.");
         textExtract.add("    This line starts with spaces.");
         textExtract.add("");
@@ -81,6 +82,7 @@ public class StringUtilsTest {
         startMarkerOnly.add("");
         startMarkerOnly.add("# Tabs and spaces");
         startMarkerOnly.add("");
+        /* @Checkstyle:ignoreFor 1 */
         startMarkerOnly.add("	This line starts with a tab.");
         startMarkerOnly.add("    This line starts with spaces.");
         startMarkerOnly.add("");
@@ -216,7 +218,7 @@ public class StringUtilsTest {
     @Test
     public void extractQuoteStartAndEndSeparateLines() {
         ArrayList<String> theExtract =
-                StringUtils.extractQuote(textExtract,"// To be included");
+                StringUtils.extractQuote(textExtract, "// To be included");
 
         assertThat(theExtract).isEqualTo(toBeIncluded);
     }
@@ -300,6 +302,7 @@ public class StringUtilsTest {
             StringUtils.outdent(
                     StringUtils.extractQuote(textExtract, "# Tabs and spaces"));
         } catch (IllegalArgumentException e) {
+            /* @Checkstyle:ignoreFor 2 */
             assertThat(e.getMessage())
                     .matches("	This line starts with a tab.");
         }

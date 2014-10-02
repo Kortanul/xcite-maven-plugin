@@ -127,8 +127,7 @@ public final class StringUtils {
      */
     public static ArrayList<String> extractQuote(final ArrayList<String> text,
                                                  final String start,
-                                                 final String end)
-            throws IllegalArgumentException {
+                                                 final String end) {
 
         if (text == null || text.isEmpty()) {
             return new ArrayList<String>();
@@ -310,8 +309,7 @@ public final class StringUtils {
      * @return                          Strings with leftmost spaces removed.
      * @throws IllegalArgumentException Initial whitespace included a tab.
      */
-    public static ArrayList<String> outdent(final ArrayList<String> indented)
-            throws IllegalArgumentException {
+    public static ArrayList<String> outdent(final ArrayList<String> indented) {
         int indent = getIndent(indented);
         return outdent(indented, indent);
     }
@@ -332,8 +330,7 @@ public final class StringUtils {
      * @return                          Min. number of consecutive indent spaces.
      * @throws IllegalArgumentException Initial whitespace included a tab.
      */
-    private static int getIndent(final ArrayList<String> indented)
-            throws IllegalArgumentException {
+    private static int getIndent(final ArrayList<String> indented) {
 
         if (indented == null || indented.isEmpty()) {
             return 0;
@@ -410,5 +407,12 @@ public final class StringUtils {
      */
     public static String removeEmptySpace(final String string) {
         return (string.matches("^\\s+$")) ? "" : string;
+    }
+
+    /**
+     * Constructor not used.
+     */
+    private StringUtils() {
+        // Not used
     }
 }

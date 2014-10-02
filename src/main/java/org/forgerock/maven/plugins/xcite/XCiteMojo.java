@@ -28,13 +28,13 @@ import java.io.IOException;
 /**
  * Copy quotes from source text files into target text files.
  */
-@Mojo( name = "cite", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
+@Mojo(name = "cite", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class XCiteMojo extends AbstractMojo {
 
     /**
      * Whether to escape XML characters in quotes.
      */
-    @Parameter ( defaultValue = "false" )
+    @Parameter (defaultValue = "false")
     private boolean escapeXml;
 
     /**
@@ -52,25 +52,25 @@ public class XCiteMojo extends AbstractMojo {
     /**
      * Indent quotes this number of spaces from the left margin.
      */
-    @Parameter ( defaultValue = "0" )
+    @Parameter (defaultValue = "0")
     private int indent;
 
     /**
      * Whether to outdent quotes flush with the left margin.
      */
-    @Parameter ( defaultValue = "false" )
+    @Parameter (defaultValue = "false")
     private boolean outdent;
 
     /**
      * Output directory for files with quotes.
      */
-    @Parameter ( defaultValue = "${project.build.directory}/xcite" )
+    @Parameter (defaultValue = "${project.build.directory}/xcite")
     private File outputDirectory;
 
     /**
      * Source directory for files with citations.
      */
-    @Parameter ( defaultValue = "${basedir}/src/main" )
+    @Parameter (defaultValue = "${basedir}/src/main")
     private File sourceDirectory;
 
     /**

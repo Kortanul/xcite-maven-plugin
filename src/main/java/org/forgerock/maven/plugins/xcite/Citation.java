@@ -139,8 +139,7 @@ public class Citation {
      * @param path      The pathname string for the file to quote. Not null.
      * @throws IllegalArgumentException Path is broken somehow.
      */
-    public Citation(final String path)
-            throws IllegalArgumentException {
+    public Citation(final String path) {
         build(path, ':', null, null);
     }
 
@@ -161,10 +160,7 @@ public class Citation {
      * @param start     The start marker. If null or "", only path is useful.
      * @throws IllegalArgumentException Path or marker is broken somehow.
      */
-    public Citation(final String path,
-                    final char delimiter,
-                    final String start)
-            throws IllegalArgumentException {
+    public Citation(final String path, final char delimiter, final String start) {
         build(path, delimiter, start, null);
     }
 
@@ -185,11 +181,8 @@ public class Citation {
      * @param end       The end marker. If null or "", {@code start} is both.
      * @throws IllegalArgumentException Path or marker is broken somehow.
      */
-    public Citation(final String path,
-                    final char delimiter,
-                    final String start,
-                    final String end)
-            throws IllegalArgumentException {
+    public Citation(final String path, final char delimiter,
+                    final String start, final String end) {
         build(path, delimiter, start, end);
     }
 
@@ -202,11 +195,8 @@ public class Citation {
      * @param end       The end marker. If null or "", {@code start} is both.
      * @throws IllegalArgumentException Path or marker is broken somehow.
      */
-    private void build(final String path,
-                       final char delimiter,
-                       final String start,
-                       final String end)
-        throws IllegalArgumentException {
+    private void build(final String path, final char delimiter,
+                       final String start, final String end) {
         setPath(path);
         setDelimiter(delimiter);
         setStart(start);
@@ -228,7 +218,7 @@ public class Citation {
      * @param path The pathname string for the file to quote.
      * @throws IllegalArgumentException Path cannot be null.
      */
-    public void setPath(final String path) throws IllegalArgumentException {
+    public void setPath(final String path) {
         if (path == null) {
             throw new IllegalArgumentException("Path cannot be null.");
         } else {
@@ -318,16 +308,6 @@ public class Citation {
      */
     private static boolean isNullOrEmpty(final String string) {
         return (string == null || string.isEmpty());
-    }
-
-    /**
-     * Whether the current citation is equivalent to the argument.
-     *
-     * @param citation The citation to compare.
-     * @return         True if the citations' string representations are equal.
-     */
-    public boolean equals(final Citation citation) {
-        return this.toString().equals(citation.toString());
     }
 
     /**

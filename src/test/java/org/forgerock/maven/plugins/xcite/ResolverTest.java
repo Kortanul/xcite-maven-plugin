@@ -105,21 +105,21 @@ public class ResolverTest {
         Resolver resolver = new Resolver(new File("."), false, 0, false);
 
         String[] tests = {
-                "No citation to match.",        // 0
-                "pre [/test:start:end] post",   // 1
-                "pre [/test:start] post",       // 2
-                "pre [/test] post",             // 3
-                "pre [/test]",                  // 4
-                "pre [/test:start:end]",        // 5
-                "pre [/test:start]",            // 6
-                "[/test:start:end] post",       // 7
-                "[/test:start] post",           // 8
-                "[/test] post",                 // 9
-                "[/test:start:end]",            // 10
-                "[/test:start]",                // 11
-                "[/test] ",                     // 12
-                "[/test] [/test]",              // 13
-                "[/test][/test]"                // 14
+            "No citation to match.",        // 0
+            "pre [/test:start:end] post",   // 1
+            "pre [/test:start] post",       // 2
+            "pre [/test] post",             // 3
+            "pre [/test]",                  // 4
+            "pre [/test:start:end]",        // 5
+            "pre [/test:start]",            // 6
+            "[/test:start:end] post",       // 7
+            "[/test:start] post",           // 8
+            "[/test] post",                 // 9
+            "[/test:start:end]",            // 10
+            "[/test:start]",                // 11
+            "[/test] ",                     // 12
+            "[/test] [/test]",              // 13
+            "[/test][/test]"                // 14
         };
 
         assertThat(resolver.split(tests[0])).hasSize(1);
